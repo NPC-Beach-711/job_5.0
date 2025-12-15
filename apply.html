@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Job Application – National Petroleum Council</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="description" content="Submit a job application to the National Petroleum Council." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.npc.org/apply.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Job Application – National Petroleum Council" />
+  <meta property="og:description" content="Submit a job application to the National Petroleum Council." />
+  <meta property="og:url" content="https://www.npc.org/apply.html" />
+
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#3c4d97">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1020">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Job Application",
+    "description": "Submit a job application to the National Petroleum Council.",
+    "url": "https://www.npc.org/apply.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "National Petroleum Council",
+      "url": "https://www.npc.org/"
+    }
+  }
+  </script>
+
+  <!-- Site-wide CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <!-- flatpickr (month/year picker) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <!-- flatpickr month select plugin -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+
+  <!-- Page-local wizard styles (scoped so it won't affect other pages) -->
+  <style>
+    .apply-wizard h2 { margin-top: 0; }
+    .apply-wizard .wizard-intro { margin-top: 0.25rem; color: #555; }
+
+    .apply-wizard .wizard-progress {
+      margin: 1.25rem 0 1rem;
+      padding: 1rem 1rem;
+      border: 1px solid var(--npc-border);
+      border-radius: 14px;
+      background: #fbfbfd;
+    }
+
+    .apply-wizard .wizard-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: #e8e8ef;
+      overflow: hidden;
+    }
+    .apply-wizard .wizard-bar > div {
+      height: 100%;
+      width: 0%;
+      background: var(--npc-gold);
+      transition: width 0.25s ease;
+    }
+
+    .apply-wizard .wizard-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: #555;
+    }
+    .apply-wizard .wizard-steps span {
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--npc-border);
+      border-radius: 999px;
+      background: #fff;
+    }
+    .apply-wizard .wizard-steps span.active {
+      border-color: var(--npc-gold);
+      font-weight: 700;
+      color: #111;
+    }
+
+    .apply-wizard form { margin-top: 1rem; }
+    .apply-wizard fieldset { border: 0; padding: 0; margin: 0; display: none; }
+    .apply-wizard fieldset.active { display: block; }
+
+    .apply-wizard .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .apply-wizard .grid-1 { grid-template-columns: 1fr; }
+    @media (max-width: 760px) {
+      .apply-wizard .grid { grid-template-columns: 1fr; }
+    }
+
+    .apply-wizard label { display: block; font-size: 0.86rem; font-weight: 700; margin: 0 0 0.35rem; }
+    .apply-wizard .req::after { content: " *"; color: #b42318; font-weight: 900; }
+
+    .apply-wizard input,
+    .apply-wizard select,
+    .apply-wizard textarea {
+      width: 100%;
+      padding: 0.65rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fff;
+      color: #111827;
+    }
+    .apply-wizard textarea { min-height: 110px; resize: vertical; }
+
+    .apply-wizard .hint { margin: 0.35rem 0 0; font-size: 0.82rem; color: #6b7280; }
+
+    .apply-wizard .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+    .apply-wizard .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--npc-border);
+      background: #fff;
+      font-size: 0.9rem;
+    }
+
+    .apply-wizard .repeat {
+      border: 1px solid var(--npc-border);
+      border-radius: 12px;
+      padding: 1rem;
+      background: #fbfbfd;
+    }
+    .apply-wizard .repeat + .repeat { margin-top: 0.9rem; }
+    .apply-wizard .repeat-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.85rem;
+    }
+    .apply-wizard .repeat-head h3 { margin: 0; font-size: 1rem; }
+
+    .apply-wizard .wizard-error {
+      display: none;
+      margin: 0.75rem 0 0;
+      padding: 0.75rem 0.9rem;
+      border-radius: 12px;
+      border: 1px solid #fecdca;
+      background: #fff5f5;
+      color: #7a271a;
+    }
+    .apply-wizard .wizard-error.show { display: block; }
+
+    .apply-wizard .wizard-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 1.35rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--npc-border);
+    }
+
+    .apply-wizard .summary {
+      border: 1px solid var(--npc-border);
+      border-radius: 12px;
+      padding: 1rem;
+      background: #fbfbfd;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 320px;
+      overflow: auto;
+    }
+
+    /* Optional: make flatpickr look more "NPC" */
+    .flatpickr-calendar {
+      font-family: inherit;
+      border-radius: 12px;
+      border: 1px solid var(--npc-border);
+    }
+    .flatpickr-monthSelect-month.selected,
+    .flatpickr-monthSelect-month:hover {
+      background: var(--npc-gold);
+      color: #3b2200;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="top-bar">
+        <a href="index.html" class="logo-wrap">
+          <div class="logo-circle">NPC</div>
+          <div class="logo-text">The National Petroleum Council</div>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About NPC</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="reports.html">Reports</a></li>
+            <li><a href="apply.html" aria-current="page">Apply</a></li>
+          </ul>
+        </nav>
+
+        <div class="social-links">
+          <a href="https://www.linkedin.com/company/national-petroleum-council/"
+             class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+          <a href="https://www.youtube.com/@NationalPetroleumCouncil"
+             class="social-link social-link--yt" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <a href="https://www.youtube.com/watch?v=ondgR7b0pbw" target="_blank" rel="noopener noreferrer">
+      Click here to watch the 135th NPC Meeting of the National Petroleum Council.
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero hero--small">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <h1>Job Application</h1>
+          <p>Please complete each step. Required fields are marked with an asterisk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main>
+    <section class="legal-section">
+      <div class="container">
+        <article class="legal-content apply-wizard">
+          <h2>Apply</h2>
+          <p class="wizard-intro">This form is a multi-step wizard. You can go back at any time before submitting.</p>
+
+          <div class="wizard-progress" aria-label="Application progress">
+            <div class="wizard-bar"><div id="barFill"></div></div>
+            <div class="wizard-steps" id="stepChips"></div>
+          </div>
+
+          <form id="applyForm" novalidate>
+            <div id="errBox" class="wizard-error" role="alert" aria-live="polite"></div>
+
+            <!-- STEP 1 -->
+            <fieldset data-step="0" class="active">
+              <h3>Contact Information</h3>
+              <div class="grid">
+                <div>
+                  <label class="req" for="fullName">Full name</label>
+                  <input id="fullName" name="fullName" autocomplete="name" required />
+                </div>
+                <div>
+                  <label for="preferredName">Preferred name</label>
+                  <input id="preferredName" name="preferredName" />
+                </div>
+                <div>
+                  <label class="req" for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required />
+                </div>
+                <div>
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" autocomplete="tel" />
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- STEP 2 -->
+            <fieldset data-step="1">
+              <h3>Location</h3>
+              <div class="grid">
+                <div>
+                  <label class="req" for="city">City</label>
+                  <input id="city" name="city" required />
+                </div>
+                <div>
+                  <label class="req" for="state">State/Province</label>
+                  <input id="state" name="state" required />
+                </div>
+                <div>
+                  <label class="req" for="country">Country</label>
+                  <input id="country" name="country" required />
+                </div>
+                <div>
+                  <label for="linkedin">LinkedIn URL</label>
+                  <input id="linkedin" name="linkedin" type="url" placeholder="https://..." />
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- STEP 3 -->
+            <fieldset data-step="2">
+              <h3>Eligibility</h3>
+
+              <div class="repeat">
+                <label class="req">Are you legally authorized to work where this job is located?</label>
+                <div class="pill-row">
+                  <label class="pill"><input type="radio" name="authorized" value="Yes" required /> Yes</label>
+                  <label class="pill"><input type="radio" name="authorized" value="No" required /> No</label>
+                </div>
+              </div>
+
+              <div class="repeat">
+                <label class="req">Will you now or in the future require sponsorship?</label>
+                <div class="pill-row">
+                  <label class="pill"><input type="radio" name="sponsorship" value="Yes" required /> Yes</label>
+                  <label class="pill"><input type="radio" name="sponsorship" value="No" required /> No</label>
+                </div>
+              </div>
+
+              <div class="repeat">
+                <label class="req">Are you at least 18 years old?</label>
+                <div class="pill-row">
+                  <label class="pill"><input type="radio" name="age18" value="Yes" required /> Yes</label>
+                  <label class="pill"><input type="radio" name="age18" value="No" required /> No</label>
+                </div>
+              </div>
+
+              <div class="repeat">
+                <label>Do you need an accommodation for the application process?</label>
+                <div class="pill-row">
+                  <label class="pill"><input type="radio" name="accommodation" value="No" /> No</label>
+                  <label class="pill"><input type="radio" name="accommodation" value="Yes" /> Yes</label>
+                </div>
+                <div style="margin-top:.75rem;">
+                  <label for="accommodationDetails">If yes, tell us what you need</label>
+                  <textarea id="accommodationDetails" name="accommodationDetails" placeholder="Optional details"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- STEP 4 -->
+            <fieldset data-step="3">
+              <h3>Education</h3>
+              <div class="grid">
+                <div>
+                  <label class="req" for="eduLevel">Highest level completed</label>
+                  <select id="eduLevel" name="eduLevel" required>
+                    <option value="">Select…</option>
+                    <option>High school</option>
+                    <option>Some college</option>
+                    <option>Associate</option>
+                    <option>Bachelor</option>
+                    <option>Master</option>
+                    <option>Doctorate</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="field">Field of study</label>
+                  <input id="field" name="field" />
+                </div>
+                <div>
+                  <label for="institution">Institution</label>
+                  <input id="institution" name="institution" />
+                </div>
+                <div>
+                  <label for="gradDate">Graduation date</label>
+                  <input id="gradDate" name="gradDate" type="text" class="monthpicker" placeholder="Month / Year" readonly />
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- STEP 5 -->
+            <fieldset data-step="4">
+              <h3>Employment History</h3>
+              <p class="hint">Add up to 5 roles. Include your most recent positions.</p>
+
+              <div id="rolesContainer"></div>
+
+              <div style="display:flex; gap:.75rem; align-items:center; margin-top:1rem; flex-wrap:wrap;">
+                <button type="button" class="btn btn-outline" id="addRoleBtn">Add role</button>
+                <span class="hint" id="roleCapHint"></span>
+              </div>
+            </fieldset>
+
+            <!-- STEP 6 -->
+            <fieldset data-step="5">
+              <h3>Uploads</h3>
+              <div class="grid">
+                <div>
+                  <label class="req" for="resume">Résumé (PDF/DOC/DOCX)</label>
+                  <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" required />
+                  <p class="hint">Max 8MB recommended.</p>
+                </div>
+                <div>
+                  <label for="cover">Cover letter (optional)</label>
+                  <input id="cover" name="cover" type="file" accept=".pdf,.doc,.docx" />
+                </div>
+              </div>
+
+              <div style="margin-top: 1rem;">
+                <label class="req">Human verification</label>
+                <div style="margin-top:.5rem;">
+                  <div class="cf-turnstile" data-sitekey="0x4AAAAAACGq1dyDE8Td3KOS"></div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- STEP 7 -->
+            <fieldset data-step="6">
+              <h3>Disclosures & Consent</h3>
+
+              <div class="repeat">
+                <label class="req">I certify the information provided is accurate.</label>
+                <label class="pill"><input type="checkbox" name="certify" required /> I certify</label>
+              </div>
+
+              <div class="repeat">
+                <label class="req">I consent to the processing of my information for recruiting purposes.</label>
+                <label class="pill"><input type="checkbox" name="consent" required /> I consent</label>
+              </div>
+
+              <div class="repeat">
+                <label for="notes">Anything else you want to share?</label>
+                <textarea id="notes" name="notes" placeholder="Optional"></textarea>
+              </div>
+            </fieldset>
+
+            <!-- STEP 8 -->
+            <fieldset data-step="7">
+              <h3>Review</h3>
+              <p class="hint">Review what you entered. When you submit, the data will be sent to the server (later, Power Automate).</p>
+              <div class="summary" id="summaryBox"></div>
+
+              <div style="display:flex; gap:.75rem; flex-wrap:wrap; margin-top: 1rem;">
+                <button type="button" class="btn btn-outline" id="downloadJsonBtn">Download JSON (test)</button>
+              </div>
+            </fieldset>
+
+            <div class="wizard-actions">
+              <button type="button" class="btn btn-outline" id="backBtn">Back</button>
+              <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+            </div>
+
+            <p id="status" class="hint" style="margin-top:1rem;"></p>
+          </form>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          &copy; <span id="year"></span>
+          <a href="https://www.npc.org" target="_blank" rel="noopener">National Petroleum Council</a>
+        </div>
+        <div class="footer-links">
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
+
+  <script>
+    // =========================
+    // Month/year picker init
+    // =========================
+    function initMonthPickers(root = document) {
+      const els = root.querySelectorAll(".monthpicker");
+      els.forEach((el) => {
+        if (el._flatpickr) return; // already initialized
+
+        flatpickr(el, {
+          plugins: [
+            new monthSelectPlugin({
+              shorthand: false,
+              dateFormat: "F Y",
+              altFormat: "F Y"
+            })
+          ],
+          allowInput: false,
+          disableMobile: true
+        });
+      });
+    }
+
+    // =========================
+    // Wizard logic (front-end only now)
+    // =========================
+    const STEP_TITLES = ["Contact","Location","Eligibility","Education","Employment","Uploads","Consent","Review"];
+    const ROLE_CAP = 5;
+
+    const form = document.getElementById("applyForm");
+    const fieldsets = Array.from(form.querySelectorAll("fieldset"));
+    const barFill = document.getElementById("barFill");
+    const stepChips = document.getElementById("stepChips");
+    const errBox = document.getElementById("errBox");
+    const statusEl = document.getElementById("status");
+
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const rolesContainer = document.getElementById("rolesContainer");
+    const addRoleBtn = document.getElementById("addRoleBtn");
+    const roleCapHint = document.getElementById("roleCapHint");
+
+    const summaryBox = document.getElementById("summaryBox");
+    const downloadJsonBtn = document.getElementById("downloadJsonBtn");
+
+    let step = 0;
+
+    function setStatus(msg){ statusEl.textContent = msg || ""; }
+
+    function renderChips() {
+      stepChips.innerHTML = "";
+      STEP_TITLES.forEach((t, i) => {
+        const s = document.createElement("span");
+        s.textContent = `${i + 1}. ${t}`;
+        if (i === step) s.classList.add("active");
+        stepChips.appendChild(s);
+      });
+    }
+
+    function setProgress() {
+      const pct = (step / (fieldsets.length - 1)) * 100;
+      barFill.style.width = `${pct}%`;
+      renderChips();
+      backBtn.disabled = step === 0;
+      nextBtn.textContent = step === fieldsets.length - 1 ? "Submit" : "Next";
+    }
+
+    function showError(msg) {
+      errBox.textContent = msg;
+      errBox.classList.add("show");
+    }
+    function clearError() {
+      errBox.textContent = "";
+      errBox.classList.remove("show");
+    }
+
+    function showStep(n) {
+      fieldsets.forEach(fs => fs.classList.remove("active"));
+      fieldsets[n].classList.add("active");
+      step = n;
+      clearError();
+      setStatus("");
+      if (STEP_TITLES[step] === "Review") buildSummary();
+      setProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function getRadio(name) {
+      const el = form.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : "";
+    }
+
+    function validateStep(n) {
+      const fs = fieldsets[n];
+      const required = Array.from(fs.querySelectorAll("[required]"));
+
+      for (const el of required) {
+        if (el.type === "radio") {
+          if (!form.querySelector(`input[name="${el.name}"]:checked`)) {
+            return "Please answer all required questions in this step.";
+          }
+          continue;
+        }
+        if (el.type === "checkbox") {
+          if (!el.checked) return "Please check the required certification/consent boxes.";
+          continue;
+        }
+        if (el.type === "file") {
+          if (!el.files || !el.files[0]) return "Please attach the required file(s).";
+          continue;
+        }
+        if (!String(el.value || "").trim()) {
+          return "Please complete all required fields in this step.";
+        }
+        if (el.type === "email") {
+          const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+          if (!ok) return "Please enter a valid email address.";
+        }
+        if (el.type === "url" && el.value.trim()) {
+          try { new URL(el.value.trim()); }
+          catch { return "Please enter a valid URL (including https://)."; }
+        }
+      }
+
+      if (STEP_TITLES[n] === "Employment") {
+        const cards = Array.from(rolesContainer.querySelectorAll(".repeat"));
+        for (const card of cards) {
+          const employer = card.querySelector('input[name="roleEmployer"]').value.trim();
+          const title = card.querySelector('input[name="roleTitle"]').value.trim();
+          if (!employer || !title) return "Each added role must include Employer and Job Title (or remove the role).";
+        }
+      }
+
+      if (STEP_TITLES[n] === "Uploads") {
+        const resume = form.elements["resume"]?.files?.[0] || null;
+        if (resume) {
+          const lower = (resume.name || "").toLowerCase();
+          const allowed = [".pdf",".doc",".docx"];
+          if (!allowed.some(ext => lower.endsWith(ext))) return "Résumé must be PDF, DOC, or DOCX.";
+          const maxBytes = 8 * 1024 * 1024;
+          if (resume.size > maxBytes) return "Résumé must be under 8MB.";
+        }
+
+        const token = document.querySelector('input[name="cf-turnstile-response"]')?.value || "";
+        if (!token) return "Please complete the Turnstile check.";
+      }
+
+      return "";
+    }
+
+    function roleCard(index) {
+      const wrap = document.createElement("div");
+      wrap.className = "repeat";
+      wrap.dataset.index = String(index);
+
+      wrap.innerHTML = `
+        <div class="repeat-head">
+          <h3>Role ${index + 1}</h3>
+          <button type="button" class="btn btn-outline" data-remove>Remove</button>
+        </div>
+        <div class="grid">
+          <div>
+            <label class="req">Employer</label>
+            <input name="roleEmployer" placeholder="Company / organization" />
+          </div>
+          <div>
+            <label class="req">Job title</label>
+            <input name="roleTitle" placeholder="Title" />
+          </div>
+          <div>
+            <label>Start date</label>
+            <input name="roleStart" type="text" class="monthpicker" placeholder="Month / Year" readonly />
+          </div>
+          <div>
+            <label>End date</label>
+            <input name="roleEnd" type="text" class="monthpicker" placeholder="Month / Year" readonly />
+            <p class="hint">Leave blank if current.</p>
+          </div>
+        </div>
+        <div style="margin-top:.8rem;">
+          <label>Responsibilities (optional)</label>
+          <textarea name="roleDesc" placeholder="Brief summary"></textarea>
+        </div>
+      `;
+
+      wrap.querySelector("[data-remove]").addEventListener("click", () => {
+        wrap.remove();
+        renumberRoles();
+      });
+
+      return wrap;
+    }
+
+    function renumberRoles() {
+      const cards = Array.from(rolesContainer.querySelectorAll(".repeat"));
+      cards.forEach((c, i) => {
+        c.dataset.index = String(i);
+        c.querySelector("h3").textContent = `Role ${i + 1}`;
+      });
+      roleCapHint.textContent = `${cards.length} / ${ROLE_CAP} roles added`;
+      addRoleBtn.disabled = cards.length >= ROLE_CAP;
+    }
+
+    addRoleBtn.addEventListener("click", () => {
+      const cards = Array.from(rolesContainer.querySelectorAll(".repeat"));
+      if (cards.length >= ROLE_CAP) return;
+      rolesContainer.appendChild(roleCard(cards.length));
+      renumberRoles();
+      initMonthPickers(rolesContainer); // IMPORTANT: init picker for new inputs
+    });
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error("Failed to read file."));
+        reader.onload = () => {
+          const result = String(reader.result || "");
+          const commaIndex = result.indexOf(",");
+          if (commaIndex === -1) return reject(new Error("Unexpected file encoding."));
+          resolve(result.slice(commaIndex + 1));
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function collectPayload() {
+      const resume = form.elements["resume"]?.files?.[0] || null;
+      const cover = form.elements["cover"]?.files?.[0] || null;
+
+      const roles = Array.from(rolesContainer.querySelectorAll(".repeat")).map(card => ({
+        employer: card.querySelector('input[name="roleEmployer"]').value.trim(),
+        title: card.querySelector('input[name="roleTitle"]').value.trim(),
+        start: card.querySelector('input[name="roleStart"]').value || "",
+        end: card.querySelector('input[name="roleEnd"]').value || "",
+        description: card.querySelector('textarea[name="roleDesc"]').value.trim()
+      }));
+
+      const turnstileToken = document.querySelector('input[name="cf-turnstile-response"]')?.value || "";
+
+      return {
+        contact: {
+          fullName: form.elements["fullName"].value.trim(),
+          preferredName: form.elements["preferredName"].value.trim(),
+          email: form.elements["email"].value.trim(),
+          phone: form.elements["phone"].value.trim()
+        },
+        location: {
+          city: form.elements["city"].value.trim(),
+          state: form.elements["state"].value.trim(),
+          country: form.elements["country"].value.trim(),
+          linkedin: form.elements["linkedin"].value.trim()
+        },
+        eligibility: {
+          authorized: getRadio("authorized"),
+          sponsorship: getRadio("sponsorship"),
+          age18: getRadio("age18"),
+          accommodation: getRadio("accommodation"),
+          accommodationDetails: form.elements["accommodationDetails"].value.trim()
+        },
+        education: {
+          eduLevel: form.elements["eduLevel"].value,
+          field: form.elements["field"].value.trim(),
+          institution: form.elements["institution"].value.trim(),
+          gradDate: form.elements["gradDate"].value || ""
+        },
+        employmentHistory: roles,
+        disclosures: {
+          certify: !!form.elements["certify"].checked,
+          consent: !!form.elements["consent"].checked,
+          notes: form.elements["notes"].value.trim()
+        },
+        uploads: {
+          resumeFileName: resume ? resume.name : "",
+          resumeBase64: resume ? await fileToBase64(resume) : "",
+          coverFileName: cover ? cover.name : "",
+          coverBase64: cover ? await fileToBase64(cover) : ""
+        },
+        turnstileToken
+      };
+    }
+
+    function buildSummaryFromObject(obj) {
+      summaryBox.textContent = JSON.stringify(obj, null, 2);
+    }
+
+    function buildSummary() {
+      const roles = Array.from(rolesContainer.querySelectorAll(".repeat")).map(card => ({
+        employer: card.querySelector('input[name="roleEmployer"]').value.trim(),
+        title: card.querySelector('input[name="roleTitle"]').value.trim(),
+        start: card.querySelector('input[name="roleStart"]').value || "",
+        end: card.querySelector('input[name="roleEnd"]').value || "",
+        description: card.querySelector('textarea[name="roleDesc"]').value.trim()
+      }));
+
+      const resume = form.elements["resume"]?.files?.[0] || null;
+      const cover = form.elements["cover"]?.files?.[0] || null;
+
+      const preview = {
+        contact: {
+          fullName: form.elements["fullName"].value.trim(),
+          preferredName: form.elements["preferredName"].value.trim(),
+          email: form.elements["email"].value.trim(),
+          phone: form.elements["phone"].value.trim()
+        },
+        location: {
+          city: form.elements["city"].value.trim(),
+          state: form.elements["state"].value.trim(),
+          country: form.elements["country"].value.trim(),
+          linkedin: form.elements["linkedin"].value.trim()
+        },
+        eligibility: {
+          authorized: getRadio("authorized"),
+          sponsorship: getRadio("sponsorship"),
+          age18: getRadio("age18"),
+          accommodation: getRadio("accommodation"),
+          accommodationDetails: form.elements["accommodationDetails"].value.trim()
+        },
+        education: {
+          eduLevel: form.elements["eduLevel"].value,
+          field: form.elements["field"].value.trim(),
+          institution: form.elements["institution"].value.trim(),
+          gradDate: form.elements["gradDate"].value || ""
+        },
+        employmentHistory: roles,
+        uploads: {
+          resumeFileName: resume ? resume.name : "",
+          coverFileName: cover ? cover.name : ""
+        },
+        disclosures: {
+          certify: !!form.elements["certify"].checked,
+          consent: !!form.elements["consent"].checked,
+          notes: form.elements["notes"].value.trim()
+        }
+      };
+
+      buildSummaryFromObject(preview);
+    }
+
+    downloadJsonBtn.addEventListener("click", async () => {
+      const payload = await collectPayload();
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "job-application.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    backBtn.addEventListener("click", () => {
+      if (step > 0) showStep(step - 1);
+    });
+
+    nextBtn.addEventListener("click", async () => {
+      clearError();
+
+      const msg = validateStep(step);
+      if (msg) return showError(msg);
+
+      if (step === fieldsets.length - 1) {
+        setStatus("Preparing your application…");
+        const payload = await collectPayload();
+        setStatus("Front-end only right now (not submitted). Download JSON if you want to test.");
+        console.log("Payload ready for submission:", payload);
+        return;
+      }
+
+      showStep(step + 1);
+    });
+
+    // init
+    rolesContainer.appendChild(roleCard(0));
+    renumberRoles();
+    renderChips();
+    setProgress();
+    initMonthPickers(); // IMPORTANT: init picker for existing inputs (gradDate + role #1)
+  </script>
+</body>
+</html>

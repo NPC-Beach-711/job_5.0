@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =========================
+       BASIC DOCUMENT METADATA
+       ========================= -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- =========================
+       PAGE TITLE (UNIQUE)
+       ========================= -->
+  <title>NPC Members – National Petroleum Council</title>
+
+  <!-- =========================
+       VIEWPORT / RESPONSIVE
+       ========================= -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- =========================
+       CORE SEO META TAGS
+       ========================= -->
+  <meta name="description"
+        content="Directory of National Petroleum Council members, including names, titles, organizations, and membership categories." />
+  <meta name="robots" content="index, follow" />
+  <!-- Adjust if the final public URL is different -->
+  <link rel="canonical" href="https://www.npc.org/members.html" />
+
+  <!-- =========================
+       OPEN GRAPH / SOCIAL SHARING
+       ========================= -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NPC Members – National Petroleum Council" />
+  <meta property="og:description"
+        content="View the current National Petroleum Council membership directory by name, organization, and category." />
+  <meta property="og:url" content="https://www.npc.org/members.html" />
+  <!-- Optional: add an OG image if you have one -->
+  <!-- <meta property="og:image" content="https://www.npc.org/images/og-members.png" /> -->
+  <!-- <meta property="og:image:alt" content="National Petroleum Council membership directory" /> -->
+
+  <!-- =========================
+       THEME / COLOR SCHEME
+       ========================= -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#3c4d97">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1020">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- =========================
+       STRUCTURED DATA
+       TYPE: WebPage (Membership Directory)
+       ========================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Council Membership Directory",
+    "description": "Directory of National Petroleum Council members, including names, titles, organizations, and membership categories.",
+    "url": "https://www.npc.org/members.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "National Petroleum Council",
+      "url": "https://www.npc.org/"
+    },
+    "about": {
+      "@type": "GovernmentOrganization",
+      "name": "National Petroleum Council",
+      "url": "https://www.npc.org/"
+    }
+  }
+  </script>
+
+  <!-- =========================
+       SITE STYLES
+       ========================= -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- =========================
+       GOOGLE ANALYTICS (GA4) – NEW ID
+       ========================= -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-93EXH3XJ1R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-93EXH3XJ1R');
+  </script>
+</head>
+<body id="top">
+
+  <!-- =========================
+       HEADER + NAV
+       ========================= -->
+  <header class="site-header">
+    <div class="container">
+      <div class="top-bar">
+        <a href="index.html" class="logo-wrap">
+          <div class="logo-circle">NPC</div>
+          <div class="logo-text">The National Petroleum Council</div>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About NPC</a></li>
+            <li><a href="members.html" aria-current="page">Members</a></li>
+            <li><a href="reports.html">Reports</a></li>
+          </ul>
+        </nav>
+
+        <div class="social-links">
+          <a
+            href="https://www.linkedin.com/company/national-petroleum-council/"
+            class="social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            in
+          </a>
+          <a
+            href="https://www.youtube.com/@NationalPetroleumCouncil"
+            class="social-link social-link--yt"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+          >
+            ▶
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================
+       ANNOUNCEMENT BAR
+       ========================= -->
+  <div class="announcement-bar">
+    <a href="https://www.youtube.com/watch?v=ondgR7b0pbw" target="_blank" rel="noopener noreferrer">
+      Click here to watch the 135th NPC Meeting of the National Petroleum Council.
+    </a>
+  </div>
+
+  <!-- =========================
+       PAGE HERO / TITLE BAND
+       ========================= -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <h1>Council Membership Directory</h1>
+          <h2>This directory lists current members of the National Petroleum Council</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       MAIN CONTENT
+       ========================= -->
+  <main>
+    <section class="members-directory-section">
+      <div class="container">
+
+        <!-- Intro area (empty for now, can add copy later) -->
+        <header class="members-header">
+          <!-- Optional intro text or summary about membership -->
+        </header>
+
+        <!-- =========================
+             FILTERS / SEARCH CONTROLS
+             ========================= -->
+        <div class="members-controls">
+          <div class="filter-search">
+            <label for="memberSearch">Search</label>
+            <input
+              type="search"
+              id="memberSearch"
+              placeholder="Search by name, organization, or title..."
+            />
+          </div>
+
+          <div class="filter">
+            <label for="categoryFilter">Category</label>
+            <select id="categoryFilter">
+              <option value="">All categories</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- =========================
+             MEMBERS DIRECTORY "TABLE"
+             (JS POPULATES #membersTableBody)
+             ========================= -->
+        <div class="members-table">
+          <div class="members-table-header">
+            <div>Name &amp; Title</div>
+            <div>Organization</div>
+            <div>Category</div>
+          </div>
+
+          <div id="membersTableBody"></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================
+       FOOTER
+       ========================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          &copy; <span id="year"></span>
+          <a href="https://www.npc.org" target="_blank" rel="noopener">
+            National Petroleum Council
+          </a>
+        </div>
+        <div class="footer-links">
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Members app (populates directory from data/JSON) -->
+    <script src="assets/members.js"></script>
+  </footer>
+
+</body>
+</html>
