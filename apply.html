@@ -545,7 +545,7 @@
       stepChips.innerHTML = "";
       STEP_TITLES.forEach((t, i) => {
         const s = document.createElement("span");
-        s.textContent = `${i + 1}. ${t}`;
+        + s.textContent = t;
         if (i === step) s.classList.add("active");
         stepChips.appendChild(s);
       });
