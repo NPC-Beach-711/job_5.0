@@ -541,15 +541,18 @@
 
     function setStatus(msg){ statusEl.textContent = msg || ""; }
 
-    function renderChips() {
-      stepChips.innerHTML = "";
-      STEP_TITLES.forEach((t, i) => {
-        const s = document.createElement("span");
-        + s.textContent = t;
-        if (i === step) s.classList.add("active");
-        stepChips.appendChild(s);
-      });
-    }
+function renderChips() {
+  if (!stepChips) return;
+
+  stepChips.innerHTML = "";
+  STEP_TITLES.forEach((title, i) => {
+    const chip = document.createElement("span");
+    chip.textContent = title;          // <-- no numeric prefix
+    if (i === step) chip.classList.add("active");
+    stepChips.appendChild(chip);
+  });
+}
+
 
     function setProgress() {
       const pct = (step / (fieldsets.length - 1)) * 100;
